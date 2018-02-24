@@ -17,6 +17,7 @@ public class DocDel {
         Settings settings = Settings.settingsBuilder().put("cluster.name","tcar-elasticsearch").build();
         Client client = TransportClient.builder().settings(settings).build().addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("172.28.24.161"),9300));
 
+
         DeleteResponse deleteResponse = client.prepareDelete(indexName,typeName,id).get();
         boolean isFound = deleteResponse.isFound();//文档存在返回true，不存在返回false
         System.out.println("是否存在:" + isFound);
